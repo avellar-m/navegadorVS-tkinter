@@ -13,17 +13,21 @@ class Aba(ttk.Frame):
         self.create_widgets() # chama a função que cria as widgets
     
     def create_widgets(self):
-        self.tempLabel = ttk.Label(self, text = "Primeiro, defina as variáveis de interpolação")
+        self.tempLabel = ttk.Label(self, text = '')
+        self.voltLabel = ttk.Label(self, text = "Primeiro, defina as variáveis de interpolação")
         self.tick_variavel()
         self.atualizar_label()
-        self.tempLabel.grid(row = 0, column = 0, padx = 10, pady = 10)
+        self.tempLabel.grid(row = 1, column = 0, padx = 10, pady = 10)
+        self.voltLabel.grid(row = 0, column = 0, padx = 10, pady = 10)
     
     def atualizar_label(self):
         if len(self.polinomio) < 2:
-            self.tempLabel.config(text = "Primeiro, defina as variáveis de interpolação")
+            self.tempLabel.config(text = "")
+            self.voltLabel.config(text = "Primeiro, defina as variáveis de interpolação")
         else:
             self.atualizar_temperatura()
-            self.tempLabel.config(text = "Voltagem: {}, Temperatura: {}".format(self.voltagem, self.temperatura))
+            self.voltLabel.config(text = "Voltagem: {}".format(self.voltagem))
+            self.tempLabel.config(text = "Temperatura: {}".format(self.temperatura))
         self.after(2000, self.atualizar_label)
         print(self.polinomio)
     
